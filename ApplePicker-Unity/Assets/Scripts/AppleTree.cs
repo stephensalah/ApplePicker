@@ -1,7 +1,7 @@
 /*
  * Created by: Steve Salah
  * Date Created: Jan 31, 2022
- * Last Editted: Jan 31, 2022
+ * Last Editted: Feb 5, 2022
  * Last Editted by: Steve Salah
  * 
  * Description: Apple Tree Script
@@ -19,15 +19,21 @@ public class AppleTree : MonoBehaviour
     public float speed = 1f; //tree speed
     public float leftAndRightEdge = 10f; //Stay on Screen
     public GameObject applePreFab; //prefab for instantiating apples
-    public float secondBetweenAppleDrops = 1f; //time between apple drops
+    public float secondsBetweenAppleDrops = 1f; //time between apple drops
     public float chanceToChangeDirections = .1f; //chance that the tree will change directions
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Invoke( "DropApple", 2f);
 
         
+    }
+    void DropApple(){
+        GameObject apple= Instantiate<GameObject>(applePreFab);
+        apple.transform.position = transform.position;
+        Invoke( "DropApple", secondsBetweenAppleDrops);
     }
 
     // Update is called once per frame
