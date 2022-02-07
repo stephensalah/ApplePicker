@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Basket : MonoBehaviour
 {
-  //  [Header("Set Dynamically")]
-    //public Text scoreGT;
+    [Header("Set Dynamically")]
+    public Text scoreGT;
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject scoreGO = GameObject.Find("ScoreCounter");
-       //scoreGT=scoreGO.GetComponent<Text>();
-       // scoreGT.text = "0";
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+       scoreGT=scoreGO.GetComponent<Text>();
+        scoreGT.text = "0";
         
     }
 
@@ -30,9 +30,12 @@ public class Basket : MonoBehaviour
         GameObject collideWith = coll.gameObject;
         if (collideWith.tag=="Apple"){
             Destroy(collideWith);
-            //int score =int.Parse(scoreGT.text);
-            //score+=100;
-            //scoreGT.text=score.ToString();
+            int score =int.Parse(scoreGT.text);
+            score+=100;
+            scoreGT.text=score.ToString();
+            if (score> HighScore.score){
+                HighScore.score=score;
+            }
         }
     }
 }

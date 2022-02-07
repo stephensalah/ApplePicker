@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ApplePicker : MonoBehaviour
 {
@@ -25,14 +26,17 @@ public class ApplePicker : MonoBehaviour
         
     }
     public void AppleDestroyed(){
-        //GameObject[] tAppleArray=GameObject.FindGameObjectWithTag("Apple");
-        //foreach (GameObject tGO in tAppleArray){
-        //    Destroy(tGO);
-       // }
+        GameObject[] tAppleArray=GameObject.FindGameObjectsWithTag("Apple");
+        foreach (GameObject tGO in tAppleArray){
+            Destroy(tGO);
+        }
         int basketIndex = basketList.Count-1;
         GameObject tBasketGO = basketList[basketIndex];
         basketList.RemoveAt(basketIndex);
         Destroy(tBasketGO);
+        if (basketList.Count==0){
+            SceneManager.LoadScene( "SampleScene");     
+               }
     }
 
     // Update is called once per frame
